@@ -84,7 +84,7 @@ bool generateSudoku(int mat[9][9]){
     for(int j = 0; j < 9; j++){
       int newNum = rand()%9+1;
       int flag = 0;
-      while(!canInsert(newNum, mat, i, j) && flag < 100){
+      while(!canInsert(newNum, mat, i, j) && flag < 70){
         newNum = rand()%9+1;
         flag++;
       }
