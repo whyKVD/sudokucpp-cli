@@ -12,6 +12,7 @@ bool canInsert(int newNum, int mat[9][9], int row, int col);
 void zero(int main[9][9]);
 bool checkLittleMatrix(int startRow, int startCol, int mat[9][9], int newNum);
 void fillSudokuToSolve(int solvedSudoku[9][9], int mat[9][9]);
+bool isSolved(int solvedSudoku[9][9], int mat[9][9]);
 
 int main(int argc, char *argv[]) {
 
@@ -25,7 +26,50 @@ int main(int argc, char *argv[]) {
 
   fillSudokuToSolve(solvedSudoku,mat);
   
-  stampaSudoku(mat);
+  bool quit = false;
+  while(!quit && !isSolved(solvedSudoku,mat)){
+    char c = '\0';
+    int col = 0, row = 0, newNum = 0;
+    stampaSudoku(mat);
+    //menu();
+    cin >> c;
+    switch(c){
+      case 'i':
+        cout << "(col row newNum):";
+        cin >> col >> row >> newNum;
+        if(mat[row][col] == 0 && canInsert(newNum, mat, row, col)){
+          mat[row][col] = newNum;
+        }else{
+          cout << "cannot insert that number retry" << endl;
+        }
+        break;
+      case 'm':
+        cout << "(col row newNum):";
+        cin >> col >> row >> newNum;
+        if(canInsert(newNum, mat, row, col)){
+          mat[row][col] = newNum;
+        }else{
+          cout << "cannot insert that number retry" << endl;
+        }
+        break;
+      case 'q':
+        cout << "goodbye" << endl;
+        quit = true;
+        break;
+      default:
+        cout << "character not codified retry" << endl;
+        break;
+    }
+  }
+
+  if(isSolved(solvedSudoku,mat)){
+    cout << "sudoku solved" << endl;
+    cout << "#######################" << endl;
+    cout << "#######################" << endl;
+    stampaSudoku(mat);
+    cout << "#######################" << endl;
+    cout << "#######################" << endl;
+  }
 
   return 0; 
 }
@@ -136,4 +180,15 @@ void fillSudokuToSolve(int solvedSudoku[9][9], int mat[9][9]){
       }
     }
   }
+}
+
+bool isSolved(int solvedSudoku[9][9], int mat[9][9]){
+  for(int i = 0; i < 9; i++){
+    for(int j = 0; j < 9; j++){
+      if(mat[i][j] != solvedSudoku[i][j]){
+        return false;
+      }
+    }
+  }
+  return true;
 }
