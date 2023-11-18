@@ -13,6 +13,7 @@ void zero(int main[9][9]);
 bool checkLittleMatrix(int startRow, int startCol, int mat[9][9], int newNum);
 void fillSudokuToSolve(int solvedSudoku[9][9], int mat[9][9]);
 bool isSolved(int solvedSudoku[9][9], int mat[9][9]);
+void menu();
 
 int main(int argc, char *argv[]) {
 
@@ -31,7 +32,7 @@ int main(int argc, char *argv[]) {
     char c = '\0';
     int col = 0, row = 0, newNum = 0;
     stampaSudoku(mat);
-    //menu();
+    menu();
     cin >> c;
     switch(c){
       case 'i':
@@ -72,6 +73,10 @@ int main(int argc, char *argv[]) {
   }
 
   return 0; 
+}
+
+void menu(){
+  cout << "(i: insert a new number, m: modify a number, q: quit): ";
 }
 
 bool generateSudoku(int mat[9][9]){
