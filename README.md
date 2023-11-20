@@ -3,6 +3,7 @@
 In this project i want to implement a sudoku game on command line
 
 ## TODO:
+- implement a sudokuSolver
 - allow the possibility to choose a difficulty
 
 ## DONE:
