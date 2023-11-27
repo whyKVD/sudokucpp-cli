@@ -13,7 +13,7 @@ bool generateSudoku(int mat[9][9]) {
         newNum = rand() % 9 + 1;
         flag++;
       }
-      if (flag < 100 && canInsert(newNum, mat, i, j))
+      if (flag < 70 && canInsert(newNum, mat, i, j))
         mat[i][j] = newNum;
       else
         return false;
@@ -46,7 +46,7 @@ void stampaSudoku(int mat[9][9]) {
 }
 
 void fillSudokuToSolve(int solvedSudoku[9][9], int mat[9][9]) {
-  int blankCell = rand() % 10 + 30;
+  int blankCell = rand() % 10;
   for (int i = 0; i < 9; i++) {
     for (int j = 0; j < 9; j++) {
       if (blankCell > 0) {
